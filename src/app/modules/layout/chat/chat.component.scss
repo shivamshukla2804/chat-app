@@ -1,0 +1,251 @@
+::ng-deep {
+  .customize {
+    text-align: center;
+    h2 {
+      border-bottom: 1px solid white;
+    }
+    span {
+      padding: 2%;
+    }
+  }
+  .mat-menu-panel {
+    max-width: none !important;
+    width: 300px;
+    background-color: #c5e9f6;
+    text-align: center;
+  }
+}
+body {
+  display: grid;
+  grid-template-rows: 8% 92%;
+  height: 100vh;
+  .main-head {
+    display: grid;
+    grid-template-columns: 3% 77% 10% 10%;
+    align-items: center;
+    background-color: #29404a;
+    color: white;
+    width: 100%;
+    box-shadow: 0 8px 6px -6px grey;
+    @media (max-width: 1100px) {
+      grid-template-columns: 10% 60% 15% 15%;
+    }
+    @media (max-width: 556px) {
+      grid-template-columns: 15% 25% 30% 30%;
+      justify-content: space-between;
+    }
+    .user-info {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      h3 {
+        margin-top: 15px;
+      }
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 10%;
+      }
+    }
+    .left {
+      img {
+        height: 50px;
+        width: 50px;
+        border-radius: 10%;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    div {
+      width: 100%;
+      padding: 0 1%;
+      mat-icon {
+        transition: 1s;
+        padding: 0 10px;
+        // margin-left: 10px;
+      }
+    }
+  }
+  main {
+    mat-sidenav-container {
+      height: 100%;
+      display: flex;
+      mat-sidenav {
+        height: 100%;
+        width: 20%;
+        display: flex;
+        background-color: #466f7f;
+        border-right: 4px solid white;
+        color: white;
+        overflow-y: auto;
+        @media (max-width: 1000px) {
+          width: 40%;
+        }
+        @media (max-width: 776px) {
+          width: 40%;
+        }
+        @media (max-width: 500px) {
+          width: 60%;
+        }
+        header {
+          display: flex;
+          height: 6%;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid grey;
+          padding: 0 6%;
+          h3 {
+            font-size: 25px;
+            margin: 0;
+          }
+          mat-icon {
+            font-size: 35px;
+            cursor: pointer;
+          }
+        }
+        .contact-list {
+          height: 94%;
+          position: relative;
+          mat-list-option {
+            color: white;
+            padding: 1% 0;
+            height: 70px;
+            border-bottom: 1px solid grey;
+            display: grid;
+            align-items: center;
+            width: 100%;
+          }
+          .list-data {
+            display: grid;
+            grid-template-columns: 20% 50% 5%;
+            // justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            overflow-y: auto;
+            img {
+              height: 50px;
+              width: 50px;
+              border-radius: 50%;
+              margin-right: 15px;
+            }
+            h2 {
+              margin-top: 10px;
+            }
+            mat-icon {
+              color: #08f808;
+              margin-left: 15px;
+            }
+          }
+          .add-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: white;
+            color: #29404a;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            padding: 0 20px 20px 0;
+            mat-icon {
+              font-size: 45px;
+            }
+          }
+        }
+      }
+      mat-sidenav-content {
+        width: 80%;
+        @media (max-width: 1255px) {
+          width: 100%;
+        }
+        .empty {
+          height: 100%;
+          background-color: #ede4e0;
+          background-image: url("../../../../assets/emptyChat.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 650px 650px;
+          @media (max-width: 1100px) {
+            background-size: 500px 500px;
+          }
+          @media (max-width: 900px) {
+            background-size: 450px 450px;
+          }
+          @media (max-width: 550px) {
+            background-size: 250px 250px;
+          }
+        }
+        .right {
+          height: 100%;
+          display: grid;
+          grid-template-rows: 8% 82% 10%;
+          background-image: url("../../../../assets/peakpx.jpg");
+          header {
+            background-color: #f9f4f0;
+            display: flex;
+            align-items: center;
+            padding-left: 1%;
+            .user-info {
+              h3 {
+                margin: 0;
+              }
+              h5 {
+                margin: 0;
+              }
+            }
+            img {
+              height: 58px;
+              margin: 1%;
+              border-radius: 50%;
+            }
+          }
+          .messages {
+            display: flex;
+            flex-direction: column-reverse;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            margin-bottom: 2px;
+            padding: 0 2%;
+            .msg {
+              width: 100%;
+            }
+          }
+          .actions {
+            width: 100%;
+            padding: 0 2%;
+            form {
+              display: grid;
+              grid-template-columns: 90% 10%;
+              justify-content: center;
+              @media (max-width: 700px) {
+                grid-template-columns: 60% 40%;
+              }
+              ::ng-deep {
+                .mat-form-field-outline {
+                  background-color: white;
+                  border-radius: 5px;
+                }
+              }
+              mat-form-field {
+                box-sizing: border-box;
+                width: 100%;
+              }
+              button {
+                height: 50px;
+                width: 50px;
+                margin: 3% 0 0 4%;
+                color: white;
+                background-color: #29404a;
+              }
+              .leaveGrp {
+                background-color: red;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

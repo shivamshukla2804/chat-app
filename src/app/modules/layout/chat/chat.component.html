@@ -1,0 +1,102 @@
+<body>
+  <div class="main-head">
+    <div class="toggle">
+      <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+      </button>
+    </div>
+    <div class="left">
+      <img src="/assets/logo.jpg" alt="">
+    </div>
+    <div class="user-info">
+      <img src="/assets/profile.jpg" alt="">
+      <h3>{{commonServie.getUserData.name || 'User'}}</h3>
+    </div>
+    <div class="right" (click)="logOut()">
+      logout<mat-icon>logout</mat-icon>
+    </div>
+  </div>
+  <main>
+    <mat-sidenav-container>
+      <!-- <div class="chat-content"> -->
+        <!-- <div class="contact-section"> -->
+          <mat-sidenav #sidenav="matSidenav">
+            <!-- <div class="left"> -->
+              <header>
+                <h3>Chats</h3>
+                <mat-icon [matMenuTriggerFor]="menu">group_add</mat-icon>
+                <mat-menu class="customize" #menu="matMenu" xPosition="before">
+                  <h2>List of available group</h2>
+                  <div class="groupInfo" *ngFor="let item of availableGroup">
+                    <div mat-menu-item (click)="openGroup(item,true)">
+                      <h3>{{item?.inputData}}</h3> <mat-icon>add</mat-icon>
+                    </div>
+                  </div>
+                  <span *ngIf="!availableGroup.length">No group available</span>
+                </mat-menu>
+              </header>
+              <div class="contact-list">
+                <mat-selection-list [multiple]="false">
+                  <mat-list-option *ngFor="let user of userList" (click)="onSelect(user)" [value]="user">
+                    <div class="list-data" *ngIf="user.type=='single';else group">
+                      <img src="/assets/profile.jpg" alt="">
+                      <h2>{{user?.res?.name}}</h2>
+                      <mat-icon class="mat-18">fiber_manual_record</mat-icon>
+                    </div>
+                    <ng-template #group>
+                      <div class="list-data">
+                        <img src="/assets/group.png" alt="">
+                        <h2>{{user?.inputData}}</h2>
+                      </div>
+                    </ng-template>
+                  </mat-list-option>
+                </mat-selection-list>
+                <button mat-raised-button class="add-btn" (click)="addChat()">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            <!-- </div> -->
+          </mat-sidenav>
+        <!-- </div> -->
+        <!-- <div class="chat-section"> -->
+          <mat-sidenav-content>
+            <section [ngClass]="[showChat ? 'empty' : 'right']">
+              <header *ngIf="!showChat">
+                <img *ngIf="chatData.type=='single'" src="/assets/profile.jpg" alt="">
+                <img *ngIf="chatData.type=='group'" src="/assets/group.png" alt="">
+                <div class="user-info">
+                  <h3 *ngIf="chatData.type=='single'">{{chatData?.res?.name}}</h3>
+                  <h3 *ngIf="chatData.type=='group'">{{chatData?.inputData}}</h3>
+                  <h5 *ngIf="typingUser.typing">{{typingUser.data.userName}} is typing... </h5>
+                </div>
+              </header>
+              <div class="messages">
+                <ng-container class="msg" *ngFor="let msg of messageData.reverse()">
+                  <app-message *ngIf="!showChat" [msg]="msg"></app-message>
+                </ng-container>
+              </div>
+              <div class="actions" *ngIf="!showChat">
+                <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
+                  <div class="example-container">
+                    <mat-form-field appearance="outline">
+                      <input matInput placeholder="Message" (ngModelChange)="onMessageChange()"
+                        formControlName="message" autocomplete="off">
+                    </mat-form-field>
+                  </div>
+                  <div class="btn">
+                    <button type="submit" mat-raised-button>
+                      <mat-icon>send</mat-icon>
+                    </button>
+                    <button type="button" class="leaveGrp" mat-raised-button *ngIf="chatData.type=='group'"
+                      (click)="leaveGroup(chatData)">leave</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </mat-sidenav-content>
+        <!-- </div> -->
+      <!-- </div> -->
+    </mat-sidenav-container>
+  </main>
+</body>

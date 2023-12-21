@@ -1,0 +1,32 @@
+<section>
+  <div class="content">
+    <h1>Let's connect</h1>
+    <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <mat-radio-group class="options" aria-label="Select an option" formControlName="option">
+          <h3>Choose:</h3>
+          <mat-radio-button value="single">Personal</mat-radio-button>
+          <mat-radio-button value="group">Group</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="field" *ngIf="chatForm.controls.option.value=='group'">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Room Id</mat-label>
+          <input matInput placeholder="abc" formControlName="data">
+          <!-- <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="field" *ngIf="chatForm.controls.option.value=='single'">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter User Email</mat-label>
+          <input matInput placeholder="abc@gmail.com" formControlName="data">
+          <!-- <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="btn">
+        <button type="button" (click)="close()" mat-raised-button>Cancel</button>
+        <button type="submit" [disabled]="chatForm.invalid" mat-raised-button>Submit</button>
+      </div>
+    </form>
+  </div>
+</section>

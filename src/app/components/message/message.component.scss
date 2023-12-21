@@ -1,0 +1,30 @@
+.text-data {
+  display: flex;
+  flex-direction: column;
+  .name {
+    text-align: left;
+    span {
+      color: grey;
+      font-size: 10px;
+    }
+  }
+}
+.local-user {
+  align-items: end;
+}
+.remote-user {
+  align-items: flex-start;
+}
+h3 {
+  background-color: white;
+  word-wrap: break-word;
+  border-radius: 10px 10px 10px 10px;
+  padding: 8px 8px 0 8px;
+  max-width: 450px;
+  margin: 0;
+  a {
+    color: blue;
+    cursor: pointer;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,10 @@
+<div class="text-data" [ngClass]="msg.userInfo.id!=commonServie.getUserData.id ? 'remote-user' : 'local-user'">
+  <div class="name">
+    <span *ngIf="msg.userInfo.id!=commonServie.getUserData.id">{{msg?.userInfo?.name}}</span>
+    <h3 *ngIf="(msg?.message).length<250">{{msg?.message}}</h3>
+    <h3 *ngIf="(msg?.message).length>=250">{{show ? msg?.message : msg?.message | slice:0:250}}
+      <a (click)="show=!show">{{show?'Show Less' : 'Show More'}}</a>
+    </h3>
+    <span>{{msg?.createAt}}</span>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<section>
+  <div class="left">
+    <img src="../../../../assets/banner.jpg" alt="">
+  </div>
+  <div class="right">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-label class="mat-label">Name</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" placeholder="Your name" formControlName="name" required />
+        <mat-error *ngIf="frmCtrl.name.hasError('required')">{{errorMsg.NAME_REQ}}</mat-error>
+        <mat-error *ngIf="frmCtrl.name.hasError('pattern')">{{errorMsg.INVALID_NAME}}</mat-error>
+      </mat-form-field>
+      <mat-label class="mat-label">Email</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput type="email" placeholder="Your Email Address" formControlName="email" required />
+        <mat-error *ngIf="frmCtrl.email.hasError('required')">{{errorMsg.EMAIL_REQ}}</mat-error>
+        <mat-error *ngIf="frmCtrl.email.hasError('pattern')">{{errorMsg.INVALID_EMAIL}}</mat-error>
+      </mat-form-field>
+
+      <div class="flex-lab">
+        <mat-label class="mat-label">Password</mat-label>
+      </div>
+      <div class="forget-wrapper">
+        <mat-form-field appearance="outline" class="passwordFormField">
+          <input autocomplete="off" #pass matInput placeholder="Enter Password" (keydown.space)="$event.preventDefault()" formControlName="password" required [type]="hide ? 'password' : 'text'" />
+          <mat-icon class="pointer" matSuffix (click)="hide = !hide">
+            <mat-icon *ngIf="hide">visibility</mat-icon>
+            <mat-icon *ngIf="!hide">visibility_off</mat-icon>
+            <!-- {{hide ? 'visibility_off' : 'visibility'}} -->
+          </mat-icon>
+          <mat-error *ngIf="frmCtrl.password.hasError('required')">{{errorMsg.PASSWORD_REQ}}
+          </mat-error>
+          <mat-error *ngIf="frmCtrl.password.hasError('pattern')">{{errorMsg.INVALID_EMAIL_PASS}}
+          </mat-error>
+          <mat-error *ngIf="frmCtrl.password.hasError('space')">{{errorMsg.NO_SPACE_PASSWORD}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="btn-cover">
+        <button type="submit" mat-stroked-button class="btn-primary"
+          [disabled]="loginForm.invalid">Login</button>
+          <!-- <span>or</span>
+          <button mat-raised-button (click)="loginWithGoogle()">Login with Google</button> -->
+      </div>
+    </form>
+  </div>
+</section>
