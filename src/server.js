@@ -1,5 +1,5 @@
 const app = require("express")();
-
+const config = require("./config/config");
 const server = require("http").createServer(app);
 
 const io = require("socket.io")(server, {
@@ -7,8 +7,7 @@ const io = require("socket.io")(server, {
     origin: "*",
   },
 });
-
-const PORT = process.env.PORT || 3000;
+const PORT = config.server.port;
 
 app.use("/hi", (req, res) => {
   try {
